@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_add_list">
+
+    <fragment
+        android:id="@+id/nav_add_list"
+        android:name="com.bhagi.smartreminder.ui.calendar.CalendarFragment"
+        android:label="@string/menu_addlist"
+        tools:layout="@layout/fragment_add" />
+
+    <fragment
+        android:id="@+id/nav_calendar"
+        android:name="com.bhagi.smartreminder.ui.addList.AddListFragment"
+        android:label="@string/menu_calender"
+        tools:layout="@layout/fragment_calendar" />
+
+    <fragment
+        android:id="@+id/nav_birthdays"
+        android:name="com.bhagi.smartreminder.ui.remindMe.RemindMeFragment"
+        android:label="@string/menu_birthdays"
+        tools:layout="@layout/fragment_birthday" />
+
+    <fragment
+        android:id="@+id/nav_remind_me"
+        android:name="com.bhagi.smartreminder.ui.about.AboutFragment"
+        android:label="@string/menu_remindme"
+        tools:layout="@layout/fragment_remind" />
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.bhagi.smartreminder.ui.share.ShareFragment"
+        android:label="@string/menu_share"
+        tools:layout="@layout/fragment_share" />
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.bhagi.smartreminder.ui.birthdays.BirthdayFragment"
+        android:label="@string/menu_about"
+        tools:layout="@layout/fragment_about" />
+</navigation>
