@@ -3,12 +3,20 @@ package com.bhagi.smartreminder;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.bhagi.smartreminder.ui.alarms.AlarmsFragment;
+import com.bhagi.smartreminder.ui.home.HomeFragment;
+import com.bhagi.smartreminder.ui.notes.NotesFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.os.Handler;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -27,10 +35,10 @@ import android.view.WindowManager;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private ActionBar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-       // setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
 
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -41,8 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        toolbar = getSupportActionBar();
 
-
+        BottomNavigationView navigation = findViewById(R.id.bottomNavigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,6 +81,30 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment;
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    toolbar.setTitle("Home");
+                    fragment = new HomeFragment();
+                    return true;
+                case R.id.nav_notes:
+                    toolbar.setTitle("Notes");
+                    fragment = new NotesFragment();
+                    return true;
+                case R.id.nav_notify:
+                    toolbar.setTitle("Notify");
+                    fragment = new AlarmsFragment();
+                    return true;
+            }
+            return false;
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

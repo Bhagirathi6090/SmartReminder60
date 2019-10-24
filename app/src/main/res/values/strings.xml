@@ -22,4 +22,8 @@
     <string name="menu_about">About</string>
     <string name="action_delete_all">Delete all</string>
 
+
+    <string name="title_home">Home</string>
+    <string name="title_Notes">Notes</string>
+    <string name="title_notify">Notify</string>
 </resources>
