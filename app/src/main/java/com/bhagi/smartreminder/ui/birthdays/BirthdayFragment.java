@@ -20,10 +20,9 @@ public class BirthdayFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        birthdayViewModel =
-                ViewModelProviders.of(this).get(BirthdayViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_about, container, false);
-        final TextView textView = root.findViewById(R.id.text_send);
+        birthdayViewModel = ViewModelProviders.of(this).get(BirthdayViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_birthday, container, false);
+        final TextView textView = root.findViewById(R.id.text_birthday);
         birthdayViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

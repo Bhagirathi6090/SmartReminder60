@@ -10,7 +10,7 @@ public class RemindMeViewModel extends ViewModel {
 
     public RemindMeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("This is RemindMe fragment");
     }
 
     public LiveData<String> getText() {

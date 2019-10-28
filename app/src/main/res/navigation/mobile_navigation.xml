@@ -3,29 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_add_list">
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.bhagi.smartreminder.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_notes"
+        android:name="com.bhagi.smartreminder.ui.notes.NotesFragment"
+        android:label="@string/title_Notes"
+        tools:layout="@layout/fragment_notes" />
+
+    <fragment
+        android:id="@+id/nav_notify"
+        android:name="com.bhagi.smartreminder.ui.alarms.AlarmsFragment"
+        android:label="@string/title_notify"
+        tools:layout="@layout/fragment_alarms" />
 
     <fragment
         android:id="@+id/nav_add_list"
-        android:name="com.bhagi.smartreminder.ui.calendar.CalendarFragment"
+        android:name="com.bhagi.smartreminder.ui.addList.AddListFragment"
         android:label="@string/menu_addlist"
         tools:layout="@layout/fragment_add" />
 
     <fragment
         android:id="@+id/nav_calendar"
-        android:name="com.bhagi.smartreminder.ui.addList.AddListFragment"
+        android:name="com.bhagi.smartreminder.ui.calendar.CalendarFragment"
         android:label="@string/menu_calender"
         tools:layout="@layout/fragment_calendar" />
 
     <fragment
         android:id="@+id/nav_birthdays"
-        android:name="com.bhagi.smartreminder.ui.remindMe.RemindMeFragment"
+        android:name="com.bhagi.smartreminder.ui.birthdays.BirthdayFragment"
         android:label="@string/menu_birthdays"
         tools:layout="@layout/fragment_birthday" />
 
     <fragment
         android:id="@+id/nav_remind_me"
-        android:name="com.bhagi.smartreminder.ui.about.AboutFragment"
+        android:name="com.bhagi.smartreminder.ui.remindMe.RemindMeFragment"
         android:label="@string/menu_remindme"
         tools:layout="@layout/fragment_remind" />
 
@@ -37,7 +55,7 @@
 
     <fragment
         android:id="@+id/nav_about"
-        android:name="com.bhagi.smartreminder.ui.birthdays.BirthdayFragment"
+        android:name="com.bhagi.smartreminder.ui.about.AboutFragment"
         android:label="@string/menu_about"
         tools:layout="@layout/fragment_about" />
 </navigation>

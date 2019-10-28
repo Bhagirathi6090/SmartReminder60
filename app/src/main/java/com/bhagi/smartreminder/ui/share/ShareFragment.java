@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.bhagi.smartreminder.R;
+import com.bhagi.smartreminder.ui.share.ShareViewModel;
 
 public class ShareFragment extends Fragment {
 

@@ -22,8 +22,8 @@ public class AddListFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         addListViewModel =
                 ViewModelProviders.of(this).get(AddListViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_calendar, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
+        View root = inflater.inflate(R.layout.fragment_add, container, false);
+        final TextView textView = root.findViewById(R.id.text_add);
         addListViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
