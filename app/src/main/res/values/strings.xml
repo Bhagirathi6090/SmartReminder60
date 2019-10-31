@@ -14,7 +14,7 @@
 
     <string name="title_activity_splash">SplashActivity</string>
 
-    <string name="menu_addlist">Add New List</string>
+    <string name="menu_addlist">To-Do</string>
     <string name="menu_calender">Calendar</string>
     <string name="menu_birthdays">Birthdays</string>
     <string name="menu_remindme">Remind Me</string>

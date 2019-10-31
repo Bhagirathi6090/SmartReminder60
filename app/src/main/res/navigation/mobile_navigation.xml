@@ -12,12 +12,6 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_notes"
-        android:name="com.bhagi.smartreminder.ui.notes.NotesFragment"
-        android:label="@string/title_Notes"
-        tools:layout="@layout/fragment_notes" />
-
-    <fragment
         android:id="@+id/nav_notify"
         android:name="com.bhagi.smartreminder.ui.alarms.AlarmsFragment"
         android:label="@string/title_notify"

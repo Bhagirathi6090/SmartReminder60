@@ -18,7 +18,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.bhagi.smartreminder.ui.notes.NotesFragment;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home,R.id.nav_notes,R.id.nav_notify,
+                R.id.nav_home,R.id.nav_notify,
                 R.id.nav_add_list, R.id.nav_calendar, R.id.nav_birthdays,
                 R.id.nav_remind_me, R.id.nav_share, R.id.nav_about)
                 .setDrawerLayout(drawer)
