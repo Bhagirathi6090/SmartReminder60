@@ -22,8 +22,15 @@
     <string name="menu_about">About</string>
     <string name="action_delete_all">Delete all</string>
 
-
     <string name="title_home">Home</string>
     <string name="title_Notes">Notes</string>
     <string name="title_notify">Notify</string>
+
+    <string name="empty_view_title_text">It\'s a bit lonely here&#8230;</string>
+    <string name="empty_view_subtitle_text">Get started by adding a note</string>
+
+    <string name="project_name">Project name: Smart Reminder</string>
+    <string name="contributed_by">Designed by: Bhagirathi rohidas,\nChandan sahoo and Raju musri</string>
+    <string name="project_version">Project version: 1.0.0</string>
+    <string name="title_activity_editor">EditorActivity</string>
 </resources>
