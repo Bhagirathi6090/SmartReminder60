@@ -37,4 +37,25 @@
     <string name="action_save">Save</string>
     <string name="action_delete">Delete</string>
     <string name="hint_notes">notes</string>
+
+    <string name="editor_activity_title_new_note">Add a Note</string>
+    <string name="editor_activity_title_edit_note">Edit Note</string>
+    <string name="provide_valid_data">can not save empty notes </string>
+
+    <string name="editor_insert_note_successful">Note saved</string>
+    <string name="editor_insert_note_failed">Error with saving Note</string>
+    <string name="editor_update_note_successful">Note saved</string>
+    <string name="editor_update_note_failed">Error with saving note</string>
+    <string name="error">error</string>
+    <string name="enter_data">Enter The Data.</string>
+    <string name="delete_dialog_msg">Delete this note?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="editor_delete_note_successful">note deleted</string>
+    <string name="editor_delete_note_failed">Error with deleting note</string>
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">Keep Editing</string>
+    <string name="can_not_empty">can\'t empty</string>
 </resources>

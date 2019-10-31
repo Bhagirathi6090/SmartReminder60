@@ -1,7 +1,11 @@
 package com.bhagi.smartreminder;
 
 import android.app.FragmentManager;
+import android.app.LoaderManager;
+import android.content.Context;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -18,6 +22,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+
+import com.bhagi.smartreminder.data.ReminderContract;
+import com.bhagi.smartreminder.data.ReminderContract.ReminderEntry;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     private ActionBar toolbar;
     private DrawerLayout drawer;
     private NavController navController;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,5 +88,9 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+
+
+
 
 }
