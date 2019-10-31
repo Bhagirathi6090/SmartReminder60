@@ -20,7 +20,7 @@
     <string name="menu_remindme">Remind Me</string>
     <string name="menu_share">Share</string>
     <string name="menu_about">About</string>
-    <string name="action_delete_all">Delete all</string>
+    <string name="action_delete_all">Delete all records</string>
 
     <string name="title_home">Home</string>
     <string name="title_Notes">Notes</string>
@@ -33,4 +33,8 @@
     <string name="contributed_by">Designed by: Bhagirathi rohidas,\nChandan sahoo and Raju musri</string>
     <string name="project_version">Project version: 1.0.0</string>
     <string name="title_activity_editor">EditorActivity</string>
+
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="hint_notes">notes</string>
 </resources>
