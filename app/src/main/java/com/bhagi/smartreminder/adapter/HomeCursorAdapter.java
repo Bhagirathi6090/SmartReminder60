@@ -43,8 +43,8 @@ public class HomeCursorAdapter extends CursorAdapter {
         String notes = cursor.getString(notesColumnIndex);
         final long id = cursor.getLong(index);
 
-        String date = createdAt.substring(1,11);
-        String formattedDate  = createdAt.substring(11,16);
+        String date = createdAt.substring(0,11);
+        String time  = createdAt.substring(31,39);
 
         ContentValues values = new ContentValues();
         Uri uri = ContentUris.withAppendedId(ReminderContract.ReminderEntry.CONTENT_URI, id);
@@ -56,7 +56,7 @@ public class HomeCursorAdapter extends CursorAdapter {
 
 
         dateTextView.setText(date);
-        timeTextView.setText(formattedDate);
+        timeTextView.setText(time);
         titleTextView.setText(title);
         notesTextView.setText(notes);
     }

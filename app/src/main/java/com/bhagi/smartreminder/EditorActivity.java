@@ -94,13 +94,16 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     public void saveNote() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "dd-M-yyyy hh:mm:ss", Locale.ENGLISH);
+                "EEE, d MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
+        SimpleDateFormat hourFormat = new SimpleDateFormat(
+                "hh:mm a", Locale.ENGLISH);
         Date date = new Date();
 
+        String dateCreated = dateFormat.format(date);
+        String hourCreated = hourFormat.format(date);
         String inputNote = inputText.getText().toString().trim();
         String titleString = "notes";
-        String createdAt = dateFormat.format(date);
-
+        String createdAt = dateCreated+" "+hourCreated;
 
         // Check if this is supposed to be a new book
         // and check if all the fields in the editor are blank
