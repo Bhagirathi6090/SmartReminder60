@@ -11,12 +11,15 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -27,6 +30,7 @@ import com.bhagi.smartreminder.data.ReminderContract.ReminderEntry;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
@@ -35,6 +39,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private Uri currentReminderUri;
 
     private boolean noteHasChanged = false;
+
+    private ActionBar toolbar;
 
     //Identifier for the notes data loader
     private static final int EXISTING_REMINDER_LOADER = 0;
@@ -53,8 +59,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
+        toolbar = getSupportActionBar();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -85,13 +94,12 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     public void saveNote() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "dd-M-yyyy hh:mm:ss");
+                "dd-M-yyyy hh:mm:ss", Locale.ENGLISH);
         Date date = new Date();
 
         String inputNote = inputText.getText().toString().trim();
         String titleString = "notes";
         String createdAt = dateFormat.format(date);
-
 
 
         // Check if this is supposed to be a new book

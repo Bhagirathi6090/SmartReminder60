@@ -35,33 +35,31 @@ import com.bhagi.smartreminder.MainActivity;
 import com.bhagi.smartreminder.R;
 import com.bhagi.smartreminder.adapter.HomeCursorAdapter;
 import com.bhagi.smartreminder.data.ReminderContract;
+import com.bhagi.smartreminder.ui.calendar.CalendarViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-public class HomeFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
-
-   // private HomeViewModel mViewModel;
-
-    private FloatingActionButton fab;
+public class HomeFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     //CursorAdapter object
     private HomeCursorAdapter homeCursorProvider;
 
     private static final int BOOK_LOADER = 0;
 
-
     public static HomeFragment newInstance() {
         return new HomeFragment();
     }
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
+        setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         // Find the ListView which will be populated with the book data
         ListView noteListView = root.findViewById(R.id.list_view);
+
 
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
         View emptyView = root.findViewById(R.id.empty_view);
@@ -89,14 +87,13 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             updateDetail();
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+                updateDetail();
             }
         });
 
         return root;
     }
+
 
     public void updateDetail() {
         Intent intent = new Intent(getActivity(), EditorActivity.class);
@@ -106,7 +103,6 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.main, menu);
-        Log.v("HomeFragment",   "onCreateOptionsMenu not getting called");
         super.onCreateOptionsMenu(menu, inflater);
     }
 

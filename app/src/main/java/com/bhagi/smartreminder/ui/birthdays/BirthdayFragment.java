@@ -1,7 +1,10 @@
 package com.bhagi.smartreminder.ui.birthdays;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -20,6 +23,7 @@ public class BirthdayFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         birthdayViewModel = ViewModelProviders.of(this).get(BirthdayViewModel.class);
         View root = inflater.inflate(R.layout.fragment_birthday, container, false);
         final TextView textView = root.findViewById(R.id.text_birthday);
@@ -30,5 +34,12 @@ public class BirthdayFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.main, menu);
+        Log.v("HomeFragment",   "onCreateOptionsMenu not getting called");
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }

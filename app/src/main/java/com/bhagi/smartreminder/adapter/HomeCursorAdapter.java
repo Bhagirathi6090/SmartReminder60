@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,11 +38,13 @@ public class HomeCursorAdapter extends CursorAdapter {
         int notesColumnIndex = cursor.getColumnIndex(ReminderContract.ReminderEntry.COLUMN_REMINDER_NOTES);
         int index = cursor.getColumnIndex(ReminderContract.ReminderEntry._ID);
 
-        String date = cursor.getString(dateColumnIndex);
+        String createdAt = cursor.getString(dateColumnIndex);
         String title = cursor.getString(titleColumnIndex);
         String notes = cursor.getString(notesColumnIndex);
         final long id = cursor.getLong(index);
 
+        String date = createdAt.substring(1,11);
+        String formattedDate  = createdAt.substring(11,16);
 
         ContentValues values = new ContentValues();
         Uri uri = ContentUris.withAppendedId(ReminderContract.ReminderEntry.CONTENT_URI, id);
@@ -53,7 +56,7 @@ public class HomeCursorAdapter extends CursorAdapter {
 
 
         dateTextView.setText(date);
-        timeTextView.setText(date);
+        timeTextView.setText(formattedDate);
         titleTextView.setText(title);
         notesTextView.setText(notes);
     }
