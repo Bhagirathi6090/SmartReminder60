@@ -40,7 +40,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     private boolean noteHasChanged = false;
 
-    private ActionBar toolbar;
+    private ActionBar toolbar2;
 
     //Identifier for the notes data loader
     private static final int EXISTING_REMINDER_LOADER = 0;
@@ -59,9 +59,9 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
-        toolbar = getSupportActionBar();
+        toolbar2 = getSupportActionBar();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

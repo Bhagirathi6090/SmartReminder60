@@ -6,14 +6,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import androidx.annotation.Nullable;
+import android.widget.CalendarView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-
 import com.bhagi.smartreminder.R;
 
 public class CalendarFragment extends Fragment {
@@ -26,13 +22,31 @@ public class CalendarFragment extends Fragment {
         calendarViewModel =
                 ViewModelProviders.of(this).get(CalendarViewModel.class);
         View root = inflater.inflate(R.layout.fragment_calendar, container, false);
-        final TextView textView = root.findViewById(R.id.text_calendar);
-        calendarViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+        CalendarView calendar = root.findViewById(R.id.calenderView);
+        // Add Listener in calendar
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                            @Override
+                            // In this Listener have one method
+                            // and in this method we will
+                            // get the value of DAYS, MONTH, YEARS
+                            public void onSelectedDayChange(
+                                    @NonNull CalendarView view,
+                                    int year,
+                                    int month,
+                                    int dayOfMonth)
+                            {
+
+                                // Store the value of date with
+                                // format in String type Variable
+                                // Add 1 in month because month
+                                // index is start with 0
+                                String Date
+                                        = dayOfMonth + "-"
+                                        + (month + 1) + "-" + year;
+                            }
+                        });
+
         return root;
     }
 

@@ -58,4 +58,9 @@
     <string name="discard">Discard</string>
     <string name="keep_editing">Keep Editing</string>
     <string name="can_not_empty">can\'t empty</string>
+    <string name="title_calender_text">title</string>
+    <string name="location_calender_text">location</string>
+    <string name="description_calender_text">description</string>
+    <string name="title_activity_birthday">BirthdayActivity</string>
+    <string name="title_activity_remind_me">RemindMeActivity</string>
 </resources>
