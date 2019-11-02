@@ -11,14 +11,25 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 
 public class RemindMeActivity extends AppCompatActivity {
     private ActionBar toolbar4;
+    private EditText dateTextRemind;
+    private EditText timeTextRemind;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remind_me);
         toolbar4 = getSupportActionBar();
+
+        dateTextRemind = findViewById(R.id.date_picker_remind);
+        timeTextRemind = findViewById(R.id.time_set_remind);
+
+        dateTextRemind.setEnabled(false);
+        timeTextRemind.setEnabled(false);
 
         Toolbar toolbar = findViewById(R.id.toolbar4);
         setSupportActionBar(toolbar);
