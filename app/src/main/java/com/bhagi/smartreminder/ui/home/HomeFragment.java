@@ -121,6 +121,8 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+        String selection = ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE +"=?";
+        String[] selectionArgs = {"notes"};
         String[] projection = {
                 ReminderContract.ReminderEntry._ID,
                 ReminderContract.ReminderEntry.COLUMN_REMINDER_DATE,
@@ -130,8 +132,8 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
         return new CursorLoader(getActivity(),
                 ReminderContract.ReminderEntry.CONTENT_URI,
                 projection,
-                null,
-                null,
+                selection,
+                selectionArgs,
                 null);
     }
 
@@ -146,8 +148,11 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
     }
 
     private void deleteAllPets() {
+        String selection = ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE +"=?";
+        String[] selectionArgs = {"notes"};
+
         Context context = getActivity().getApplicationContext();
-        int rowsDeleted = context.getContentResolver().delete(ReminderContract.ReminderEntry.CONTENT_URI, null, null);
+        int rowsDeleted = context.getContentResolver().delete(ReminderContract.ReminderEntry.CONTENT_URI, selection, selectionArgs);
         Log.v("CatalogActivity", rowsDeleted + " rows deleted from reminder database");
     }
 }

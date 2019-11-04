@@ -26,9 +26,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bhagi.smartreminder.data.ReminderContract;
 import com.bhagi.smartreminder.data.ReminderContract.ReminderEntry;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -94,9 +96,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     public void saveNote() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "EEE, d MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
+                "EEEE, dd MMM yyyy");
         SimpleDateFormat hourFormat = new SimpleDateFormat(
-                "hh:mm a", Locale.ENGLISH);
+                "hh:mm a");
+
         Date date = new Date();
 
         String dateCreated = dateFormat.format(date);
@@ -302,6 +305,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+
+        String selection = ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE +"=?";
+
+        String[] selectionArgs = {"notes"};
+
         // Since the editor shows all book attributes, define a projection that contains
         String[] projection = {
                 ReminderEntry._ID,
@@ -313,8 +321,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         return new CursorLoader(this,   // Parent activity context
                 currentReminderUri,         // Query the content URI for the current pet
                 projection,             // Columns to include in the resulting Cursor
-                null,                   // No selection clause
-                null,                   // No selection arguments
+                selection,                   // No selection clause
+                selectionArgs,                   // No selection arguments
                 null);                  // Default sort order
     }
 

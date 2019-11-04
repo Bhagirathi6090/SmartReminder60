@@ -63,4 +63,5 @@
     <string name="description_calender_text">description</string>
     <string name="title_activity_birthday">BirthdayActivity</string>
     <string name="title_activity_remind_me">RemindMeActivity</string>
+    <string name="delete_this_reminder">Delete this reminder</string>
 </resources>

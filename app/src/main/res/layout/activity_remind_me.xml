@@ -28,7 +28,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <EditText
-            android:id="@+id/editor_txt"
+            android:id="@+id/editTextView_remind"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
