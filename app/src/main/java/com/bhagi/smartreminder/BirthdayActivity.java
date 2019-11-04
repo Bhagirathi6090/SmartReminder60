@@ -192,10 +192,17 @@ public class BirthdayActivity extends AppCompatActivity implements
     }
 
     private boolean validateData() {
+        String dateCreated = dateTextBirthday.getText().toString();
         String name = birthdayEditText.getText().toString();
+
         boolean isValidate = true;
         if (name.equals("") || TextUtils.isEmpty(name)) {
             birthdayEditText.setError(getResources().getString(R.string.can_not_empty));
+            isValidate = false;
+        }
+
+        if (dateCreated.equals("") || TextUtils.isEmpty(dateCreated)) {
+            dateTextBirthday.setError(getResources().getString(R.string.can_not_empty));
             isValidate = false;
         }
 

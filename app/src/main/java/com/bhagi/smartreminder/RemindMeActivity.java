@@ -197,6 +197,7 @@ public class RemindMeActivity extends AppCompatActivity implements
             return;
         }
 
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(ReminderEntry.COLUMN_REMINDER_DATE, createdAt);
         contentValues.put(ReminderEntry.COLUMN_REMINDER_TITLE, titleString);
@@ -232,9 +233,20 @@ public class RemindMeActivity extends AppCompatActivity implements
 
     private boolean validateData() {
         String name = remindMeEditText.getText().toString();
+        String dateCreated = dateTextRemind.getText().toString();
+        String hourCreated = timeTextRemind.getText().toString();
+
         boolean isValidate = true;
         if (name.equals("") || TextUtils.isEmpty(name)) {
             remindMeEditText.setError(getResources().getString(R.string.can_not_empty));
+            isValidate = false;
+        }
+        if (dateCreated.equals("") || TextUtils.isEmpty(dateCreated)) {
+            dateTextRemind.setError(getResources().getString(R.string.can_not_empty));
+            isValidate = false;
+        }
+        if (hourCreated.equals("") || TextUtils.isEmpty(hourCreated)) {
+            timeTextRemind.setError(getResources().getString(R.string.can_not_empty));
             isValidate = false;
         }
 
