@@ -84,4 +84,6 @@
 
     <string name="all_records_deleted">All records deleted</string>
     <string name="all_records_deleted_failed">record deletion failed</string>
+    <string name="add_something">add something</string>
+    <string name="show_all">Show all items</string>
 </resources>

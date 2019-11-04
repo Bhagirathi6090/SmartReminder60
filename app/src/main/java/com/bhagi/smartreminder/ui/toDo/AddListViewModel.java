@@ -1,4 +1,4 @@
-package com.bhagi.smartreminder.ui.addList;
+package com.bhagi.smartreminder.ui.toDo;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

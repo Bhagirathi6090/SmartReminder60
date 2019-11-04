@@ -1,4 +1,4 @@
-package com.bhagi.smartreminder.ui.addList;
+package com.bhagi.smartreminder.ui.toDo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.bhagi.smartreminder.R;
 
-public class AddListFragment extends Fragment {
+public class toDoFragment extends Fragment {
 
     private AddListViewModel addListViewModel;
 
@@ -22,7 +22,7 @@ public class AddListFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         addListViewModel =
                 ViewModelProviders.of(this).get(AddListViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_add, container, false);
+        View root = inflater.inflate(R.layout.fragment_todo, container, false);
         final TextView textView = root.findViewById(R.id.text_add);
         addListViewModel.getText().observe(this, new Observer<String>() {
             @Override
