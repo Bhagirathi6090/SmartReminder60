@@ -16,6 +16,7 @@ import android.os.Bundle;
 
 import com.bhagi.smartreminder.data.ReminderContract;
 import com.bhagi.smartreminder.data.ReminderContract.ReminderEntry;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -33,21 +34,16 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class RemindMeActivity extends AppCompatActivity implements
-        LoaderManager.LoaderCallbacks<Cursor>{
+        LoaderManager.LoaderCallbacks<Cursor> {
     private ActionBar toolbar4;
     private EditText dateTextRemind;
     private EditText timeTextRemind;
     private EditText remindMeEditText;
     private TextView dateTextView;
     private TextView timeTextView;
-    private EditText dateSetView;
-    private EditText timeSetView;
 
     private Uri currentReminderUri;
 
@@ -113,16 +109,16 @@ public class RemindMeActivity extends AppCompatActivity implements
         // creating a new note.
         if (currentReminderUri == null) {
             // This is a new note, so change the app bar to say "Add a Book"
-            setTitle("Add");
+            setTitle(getString(R.string.add));
 
             // Invalidate the options menu, so the "Delete" menu option can be hidden.
             invalidateOptionsMenu();
         } else {
-            setTitle("Edit");
+            setTitle(R.string.edit);
 
             // Initialize a loader to read the note data from the database
             // getLoaderManager().initLoader(EXISTING_REMINDER_LOADER, null,this);
-            getLoaderManager().initLoader((EXISTING_REMINDER_LOADER),null, this);
+            getLoaderManager().initLoader((EXISTING_REMINDER_LOADER), null, this);
         }
 
         remindMeEditText.setOnTouchListener(mTouchListener);
@@ -136,7 +132,7 @@ public class RemindMeActivity extends AppCompatActivity implements
         return true;
     }
 
-    private void handleTimeButton(){
+    private void handleTimeButton() {
         Calendar calendar = Calendar.getInstance();
 
         int HOUR = calendar.get(Calendar.HOUR);
@@ -148,18 +144,18 @@ public class RemindMeActivity extends AppCompatActivity implements
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                 Calendar calendar1 = Calendar.getInstance();
-                calendar1.set(Calendar.HOUR,hour);
-                calendar1.set(Calendar.MINUTE,minute);
+                calendar1.set(Calendar.HOUR, hour);
+                calendar1.set(Calendar.MINUTE, minute);
 
-                CharSequence timeCharSequence = DateFormat.format("hh:mm a",calendar1);
+                CharSequence timeCharSequence = DateFormat.format("hh:mm a", calendar1);
                 timeTextRemind.setText(timeCharSequence);
             }
-        },HOUR,MINUTE,is24Hour);
+        }, HOUR, MINUTE, is24Hour);
 
         timePickerDialog.show();
     }
 
-    private void handleDateButton(){
+    private void handleDateButton() {
         Calendar calendar = Calendar.getInstance();
 
         int YEAR = calendar.get(Calendar.YEAR);
@@ -173,15 +169,15 @@ public class RemindMeActivity extends AppCompatActivity implements
                 dateTextRemind.setText(dateString);
 
                 Calendar calendar1 = Calendar.getInstance();
-                calendar1.set(Calendar.YEAR,year);
-                calendar1.set(Calendar.MONTH,month);
-                calendar1.set(Calendar.DATE,date);
+                calendar1.set(Calendar.YEAR, year);
+                calendar1.set(Calendar.MONTH, month);
+                calendar1.set(Calendar.DATE, date);
 
-                CharSequence dateCharSequence = DateFormat.format("EEEE, dd MMM yyyy",calendar1);
+                CharSequence dateCharSequence = DateFormat.format("EEEE, dd MMM yyyy", calendar1);
                 dateTextRemind.setText(dateCharSequence);
 
             }
-        },YEAR,MONTH,DATE);
+        }, YEAR, MONTH, DATE);
 
         datePickerDialog.show();
     }
@@ -191,7 +187,7 @@ public class RemindMeActivity extends AppCompatActivity implements
         String hourCreated = timeTextRemind.getText().toString().trim();
         String inputNote = remindMeEditText.getText().toString().trim();
         String titleString = "remind";
-        String createdAt = dateCreated+" "+hourCreated;
+        String createdAt = dateCreated + " " + hourCreated;
 
         // Check if this is supposed to be a new book
         // and check if all the fields in the editor are blank
@@ -214,27 +210,27 @@ public class RemindMeActivity extends AppCompatActivity implements
 
             // Show a toast message depending on whether or not the insertion was successful.
             if (newUri == null) {
-                Toast.makeText(this, getString(R.string.editor_insert_note_failed),
+                Toast.makeText(this, getString(R.string.delete_reminder_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, getString(R.string.editor_insert_note_successful),
+                Toast.makeText(this, getString(R.string.reminder_saved),
                         Toast.LENGTH_SHORT).show();
             }
         } else {
-            int rowsAffected = getContentResolver().update(currentReminderUri, contentValues,null, null);
+            int rowsAffected = getContentResolver().update(currentReminderUri, contentValues, null, null);
 
             // Show a toast message depending on whether or not the update was successful.
             if (rowsAffected == 0) {
-                Toast.makeText(this, getString(R.string.editor_update_note_failed),
+                Toast.makeText(this, getString(R.string.delete_reminder_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, getString(R.string.editor_update_note_successful),
+                Toast.makeText(this, getString(R.string.reminder_saved),
                         Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    private boolean validateData(){
+    private boolean validateData() {
         String name = remindMeEditText.getText().toString();
         boolean isValidate = true;
         if (name.equals("") || TextUtils.isEmpty(name)) {
@@ -340,10 +336,10 @@ public class RemindMeActivity extends AppCompatActivity implements
 
             // Show a toast message depending on whether or not the delete was successful.
             if (rowsDeleted == 0) {
-                Toast.makeText(this, getString(R.string.editor_delete_note_failed),
+                Toast.makeText(this, getString(R.string.delete_reminder_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, getString(R.string.editor_delete_note_successful),
+                Toast.makeText(this, getString(R.string.delete_reminder_successful),
                         Toast.LENGTH_SHORT).show();
             }
         }
@@ -383,7 +379,7 @@ public class RemindMeActivity extends AppCompatActivity implements
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        String selection = ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE +"=?";
+        String selection = ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE + "=?";
 
         String[] selectionArgs = {"remind"};
 
@@ -427,7 +423,7 @@ public class RemindMeActivity extends AppCompatActivity implements
         remindMeEditText.setText("");
     }
 
-    public static Context getContextOfApplication(){
+    public static Context getContextOfApplication() {
         return context;
     }
 

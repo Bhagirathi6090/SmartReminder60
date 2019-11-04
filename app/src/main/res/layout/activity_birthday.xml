@@ -28,7 +28,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <EditText
-            android:id="@+id/editor_txt"
+            android:id="@+id/editor_txt_birthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -76,35 +76,6 @@
                 android:layout_toEndOf="@+id/date_set_birthday"
                 app:backgroundTint="#a9a9a9" />
 
-            <TextView
-                android:id="@+id/time_picker_birthday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:padding="8dp"
-                android:textSize="18sp"
-                android:textColor="#ffffff"
-                android:layout_below="@+id/date_set_birthday"
-                android:background="@drawable/roundcorner"
-                android:text="TIME"/>
-
-            <EditText
-                android:id="@+id/time_set_birtday"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="sans-serif-black"
-                android:hint="time"
-                android:inputType="none"
-                android:textSize="18sp"
-                android:padding="8dp"
-                android:layout_toEndOf="@+id/time_picker_birthday"
-                android:layout_below="@+id/date_picker_birthday"
-                app:backgroundTint="#a9a9a9" />
         </RelativeLayout>
-
     </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

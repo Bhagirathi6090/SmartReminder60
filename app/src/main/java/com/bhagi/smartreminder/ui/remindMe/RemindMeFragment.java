@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -156,7 +157,15 @@ public class RemindMeFragment extends Fragment implements LoaderManager.LoaderCa
 
         Context context = getActivity().getApplicationContext();
         int rowsDeleted = context.getContentResolver().delete(ReminderContract.ReminderEntry.CONTENT_URI, selection, selectionArgs);
-        Log.v("CatalogActivity", rowsDeleted + " rows deleted from reminder database");
+
+        // Show a toast message depending on whether or not the delete was successful.
+        if (rowsDeleted == 0) {
+            Toast.makeText(getActivity(), getString(R.string.delete_reminder_failed),
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getActivity(), getString(R.string.all_records_deleted_failed),
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
