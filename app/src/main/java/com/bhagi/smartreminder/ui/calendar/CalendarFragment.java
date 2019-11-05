@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,9 +25,13 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 
+import com.bhagi.smartreminder.BirthdayActivity;
 import com.bhagi.smartreminder.R;
 import com.bhagi.smartreminder.adapter.CustomArrayAdapter;
 import com.bhagi.smartreminder.data.ReminderContract;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CalendarFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -56,6 +61,12 @@ public class CalendarFragment extends Fragment implements LoaderManager.LoaderCa
         //EditText add something
         addSomething = root.findViewById(R.id.title_calender_txt);
         calendar = root.findViewById(R.id.calenderView);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        Date = simpleDateFormat.format(date);
+        Date = Date.substring(1,10);
+
         // Add Listener in calendar
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -79,35 +90,14 @@ public class CalendarFragment extends Fragment implements LoaderManager.LoaderCa
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               saveNote();
+                if (validateData()) {
+                    saveNote();
+                } else {
+                    Toast.makeText(getActivity(), getResources().getString(R.string.enter_data), Toast.LENGTH_SHORT).show();
+                }
             }
         });
-//        addButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-//                popupInputDialogView = layoutInflater.inflate(R.layout.pop_up_dialog, null);
-//                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-//                alertDialogBuilder.setTitle("Do you want to update something?");
-//                alertDialogBuilder.setCancelable(false);
-//
-//                // Set the inflated layout view object to the AlertDialog builder.
-//                alertDialogBuilder.setView(popupInputDialogView);
-//
-//                // Create AlertDialog and show.
-//                final AlertDialog alertDialog = alertDialogBuilder.create();
-//                alertDialog.show();
-//
-//                cancelUserDataButton = popupInputDialogView.findViewById(R.id.button_cancel_user_data);
-//
-//                cancelUserDataButton.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        alertDialog.cancel();
-//                    }
-//                });
-//            }
-//        });
+
         getLoaderManager().initLoader(BOOK_LOADER, null, this);
         return root;
     }
@@ -139,6 +129,7 @@ public class CalendarFragment extends Fragment implements LoaderManager.LoaderCa
         contentValues.put(ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE, titleString);
         contentValues.put(ReminderContract.ReminderEntry.COLUMN_REMINDER_NOTES, inputNote);
 
+
         Uri newUri = getActivity().getContentResolver().insert(ReminderContract.ReminderEntry.CONTENT_URI, contentValues);
 
         if (newUri == null) {
@@ -151,40 +142,54 @@ public class CalendarFragment extends Fragment implements LoaderManager.LoaderCa
         }
     }
 
-        @NonNull
-        @Override
-        public Loader<Cursor> onCreateLoader ( int id, @Nullable Bundle args){
-            String selection = ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE + "=?";
-            String[] selectionArgs = {"calendar"};
-            String[] projection = {
-                    ReminderContract.ReminderEntry._ID,
-                    ReminderContract.ReminderEntry.COLUMN_REMINDER_DATE,
-                    ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE,
-                    ReminderContract.ReminderEntry.COLUMN_REMINDER_NOTES};
+    private boolean validateData() {
+        String add = addSomething.getText().toString();
 
-            return new CursorLoader(getActivity(),
-                    ReminderContract.ReminderEntry.CONTENT_URI,
-                    projection,
-                    selection,
-                    selectionArgs,
-                    null);
+        boolean isValidate = true;
+
+        if (add.equals("") || TextUtils.isEmpty(add)) {
+            addSomething.setError(getResources().getString(R.string.can_not_empty));
+            isValidate = false;
         }
 
-        @Override
-        public void onLoadFinished (@NonNull Loader < Cursor > loader, Cursor data){
-            customArrayAdapter.swapCursor(data);
-        }
-
-        @Override
-        public void onLoaderReset (@NonNull Loader < Cursor > loader) {
-            customArrayAdapter.swapCursor(null);
-        }
-
-        private void deleteAllPets () {
-            String selection = ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE + "=?";
-            String[] selectionArgs = {"calendar"};
-
-            Context context = getActivity().getApplicationContext();
-            int rowsDeleted = context.getContentResolver().delete(ReminderContract.ReminderEntry.CONTENT_URI, selection, selectionArgs);
-        }
+        return isValidate;
     }
+
+    @NonNull
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+        String selection = ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE + "=?";
+        String[] selectionArgs = {"calendar"};
+        String[] projection = {
+                ReminderContract.ReminderEntry._ID,
+                ReminderContract.ReminderEntry.COLUMN_REMINDER_DATE,
+                ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE,
+                ReminderContract.ReminderEntry.COLUMN_REMINDER_NOTES};
+
+        return new CursorLoader(getActivity(),
+                ReminderContract.ReminderEntry.CONTENT_URI,
+                projection,
+                selection,
+                selectionArgs,
+                null);
+    }
+
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+        customArrayAdapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+        customArrayAdapter.swapCursor(null);
+    }
+
+    private void deleteAllPets() {
+        String selection = ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE + "=?";
+        String[] selectionArgs = {"calendar"};
+
+        Context context = getActivity().getApplicationContext();
+        int rowsDeleted = context.getContentResolver().delete(ReminderContract.ReminderEntry.CONTENT_URI, selection, selectionArgs);
+    }
+}

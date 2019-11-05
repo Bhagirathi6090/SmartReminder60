@@ -20,8 +20,6 @@ import com.bhagi.smartreminder.R;
 
 public class AlarmsFragment extends Fragment {
 
-    private AlarmsViewModel mViewModel;
-
     public static AlarmsFragment newInstance() {
         return new AlarmsFragment();
     }
@@ -30,25 +28,9 @@ public class AlarmsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        mViewModel =
-                ViewModelProviders.of(this).get(AlarmsViewModel.class);
-
         View root = inflater.inflate(R.layout.fragment_alarms, container, false);
-        final TextView textView = root.findViewById(R.id.text_alarms);
-        mViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
-    }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(AlarmsViewModel.class);
-        // TODO: Use the ViewModel
+        return root;
     }
 
 
