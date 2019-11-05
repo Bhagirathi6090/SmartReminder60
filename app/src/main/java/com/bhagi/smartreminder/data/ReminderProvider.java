@@ -110,6 +110,11 @@ public class ReminderProvider extends ContentProvider {
                 throw new IllegalArgumentException("Notes can not be empty");
             }
 
+        String time = values.getAsString(ReminderContract.ReminderEntry.COLUMN_REMINDER_TIME);
+        if (time == null) {
+            throw new IllegalArgumentException("Notes can not be empty");
+        }
+
         // Check that the note is not null
         String title = values.getAsString(ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE);
         if (title == null) {
@@ -187,11 +192,19 @@ public class ReminderProvider extends ContentProvider {
 
     private int updateBook(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         if (values.containsKey(ReminderContract.ReminderEntry.COLUMN_REMINDER_DATE)) {
-            String name = values.getAsString(ReminderContract.ReminderEntry.COLUMN_REMINDER_NOTES);
+            String name = values.getAsString(ReminderContract.ReminderEntry.COLUMN_REMINDER_DATE);
             if (name == null) {
                 throw new IllegalArgumentException("Book requires a name");
             }
         }
+
+        if (values.containsKey(ReminderContract.ReminderEntry.COLUMN_REMINDER_TIME)) {
+            String time = values.getAsString(ReminderContract.ReminderEntry.COLUMN_REMINDER_TIME);
+            if (time == null) {
+                throw new IllegalArgumentException("Book requires a name");
+            }
+        }
+
         // check that the price value is valid.
         if (values.containsKey(ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE)) {
             String title = values.getAsString(ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE);

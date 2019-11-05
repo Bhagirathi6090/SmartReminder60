@@ -34,6 +34,9 @@ public class ReminderContract {
         //Column date
         public final static String COLUMN_REMINDER_DATE = "date";
 
+        //Column time
+        public final static String COLUMN_REMINDER_TIME = "time";
+
         //Column title of the notes
         public final static String COLUMN_REMINDER_TITLE = "title";
 

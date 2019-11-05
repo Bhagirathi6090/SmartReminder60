@@ -25,6 +25,7 @@ public class ReminderDbHelper extends SQLiteOpenHelper {
         String SQL_CREATE_REMINDER_TABLE = "CREATE TABLE " + ReminderEntry.TABLE_NAME + " ("
                 + ReminderEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + ReminderEntry.COLUMN_REMINDER_DATE + " TEXT NOT NULL,"
+                + ReminderEntry.COLUMN_REMINDER_TIME + " TEXT NOT NULL,"
                 + ReminderEntry.COLUMN_REMINDER_TITLE + " TEXT NOT NULL,"
                 + ReminderEntry.COLUMN_REMINDER_NOTES + " TEXT NOT NULL);";
 

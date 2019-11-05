@@ -34,17 +34,19 @@ public class HomeCursorAdapter extends CursorAdapter {
         TextView notesTextView = view.findViewById(R.id.notes_text);
 
         int dateColumnIndex = cursor.getColumnIndex(ReminderContract.ReminderEntry.COLUMN_REMINDER_DATE);
+        int timeColumnIndex = cursor.getColumnIndex(ReminderContract.ReminderEntry.COLUMN_REMINDER_TIME);
         int titleColumnIndex = cursor.getColumnIndex(ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE);
         int notesColumnIndex = cursor.getColumnIndex(ReminderContract.ReminderEntry.COLUMN_REMINDER_NOTES);
         int index = cursor.getColumnIndex(ReminderContract.ReminderEntry._ID);
 
-        String createdAt = cursor.getString(dateColumnIndex);
+        String dateCreated = cursor.getString(dateColumnIndex);
+        String timeCreated = cursor.getString(timeColumnIndex);
         String title = cursor.getString(titleColumnIndex);
         String notes = cursor.getString(notesColumnIndex);
         final long id = cursor.getLong(index);
 
-        String date = createdAt.substring(0,3)+","+createdAt.substring(8,15);
-        String time = createdAt.substring(21,29);
+        String date = dateCreated.substring(0,3)+","+dateCreated.substring(8,15);
+       // String time = createdAt.substring(21,29);
 
         ContentValues values = new ContentValues();
         Uri uri = ContentUris.withAppendedId(ReminderContract.ReminderEntry.CONTENT_URI, id);
@@ -55,7 +57,7 @@ public class HomeCursorAdapter extends CursorAdapter {
                 new String[]{String.valueOf(ContentUris.parseId(uri))});
 
         dateTextView.setText(date);
-        timeTextView.setText(time);
+        timeTextView.setText(timeCreated);
         titleTextView.setText(title);
         notesTextView.setText(notes);
     }

@@ -93,19 +93,6 @@ public class BirthdayFragment extends Fragment implements LoaderManager.LoaderCa
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        // If this is a new book, hide the "Delete" menu item.
-        if (homeProviderCursor.getCount()>0) {
-            MenuItem menuItem = menu.findItem(R.id.action_save_activity);
-            menuItem.setVisible(true);
-        }else {
-            MenuItem menuItem = menu.findItem(R.id.action_save_activity);
-            menuItem.setVisible(false);
-        }
-    }
-
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
@@ -116,6 +103,7 @@ public class BirthdayFragment extends Fragment implements LoaderManager.LoaderCa
         String[] projection = {
                 ReminderContract.ReminderEntry._ID,
                 ReminderContract.ReminderEntry.COLUMN_REMINDER_DATE,
+                ReminderContract.ReminderEntry.COLUMN_REMINDER_TIME,
                 ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE,
                 ReminderContract.ReminderEntry.COLUMN_REMINDER_NOTES};
 

@@ -126,6 +126,7 @@ public class HomeFragment extends Fragment implements LoaderManager.LoaderCallba
         String[] projection = {
                 ReminderContract.ReminderEntry._ID,
                 ReminderContract.ReminderEntry.COLUMN_REMINDER_DATE,
+                ReminderContract.ReminderEntry.COLUMN_REMINDER_TIME,
                 ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE,
                 ReminderContract.ReminderEntry.COLUMN_REMINDER_NOTES};
 

@@ -187,7 +187,6 @@ public class RemindMeActivity extends AppCompatActivity implements
         String hourCreated = timeTextRemind.getText().toString().trim();
         String inputNote = remindMeEditText.getText().toString().trim();
         String titleString = "remind";
-        String createdAt = dateCreated + " " + hourCreated;
 
         // Check if this is supposed to be a new book
         // and check if all the fields in the editor are blank
@@ -197,12 +196,11 @@ public class RemindMeActivity extends AppCompatActivity implements
             return;
         }
 
-
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ReminderEntry.COLUMN_REMINDER_DATE, createdAt);
+        contentValues.put(ReminderEntry.COLUMN_REMINDER_DATE, dateCreated);
+        contentValues.put(ReminderEntry.COLUMN_REMINDER_TIME,hourCreated);
         contentValues.put(ReminderEntry.COLUMN_REMINDER_TITLE, titleString);
         contentValues.put(ReminderEntry.COLUMN_REMINDER_NOTES, inputNote);
-
 
         // Determine if this is a new or existing note by checking if mCurrentPetUri is null or not
         if (currentReminderUri == null) {
@@ -399,6 +397,7 @@ public class RemindMeActivity extends AppCompatActivity implements
         String[] projection = {
                 ReminderEntry._ID,
                 ReminderEntry.COLUMN_REMINDER_DATE,
+                ReminderEntry.COLUMN_REMINDER_TIME,
                 ReminderEntry.COLUMN_REMINDER_TITLE,
                 ReminderEntry.COLUMN_REMINDER_NOTES};
 
@@ -419,10 +418,12 @@ public class RemindMeActivity extends AppCompatActivity implements
 
         if (cursor.moveToFirst()) {
             int dateColumnIndex = cursor.getColumnIndex(ReminderEntry.COLUMN_REMINDER_DATE);
+            int timeColumnIndex = cursor.getColumnIndex(ReminderEntry.COLUMN_REMINDER_TIME);
             int titleColumnIndex = cursor.getColumnIndex(ReminderEntry.COLUMN_REMINDER_TITLE);
             int notesColumnIndex = cursor.getColumnIndex(ReminderEntry.COLUMN_REMINDER_NOTES);
 
             String date = cursor.getString(dateColumnIndex);
+            String time = cursor.getString(timeColumnIndex);
             String title = cursor.getString(titleColumnIndex);
             String notes = cursor.getString(notesColumnIndex);
 

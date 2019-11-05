@@ -144,11 +144,10 @@ public class BirthdayActivity extends AppCompatActivity implements
                 "hh:mm a");
 
         Date date = new Date();
-        String hourCreated = hourFormat.format(date);
+        String timeCreated = hourFormat.format(date);
 
         String inputNote = birthdayEditText.getText().toString().trim();
         String titleString = "birthday";
-        String createdAt = dateCreated + " " + hourCreated;
 
         // Check if this is supposed to be a new book
         // and check if all the fields in the editor are blank
@@ -159,7 +158,8 @@ public class BirthdayActivity extends AppCompatActivity implements
         }
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ReminderEntry.COLUMN_REMINDER_DATE, createdAt);
+        contentValues.put(ReminderEntry.COLUMN_REMINDER_DATE, dateCreated);
+        contentValues.put(ReminderEntry.COLUMN_REMINDER_TIME,timeCreated);
         contentValues.put(ReminderEntry.COLUMN_REMINDER_TITLE, titleString);
         contentValues.put(ReminderEntry.COLUMN_REMINDER_NOTES, inputNote);
 
@@ -205,7 +205,6 @@ public class BirthdayActivity extends AppCompatActivity implements
             dateTextBirthday.setError(getResources().getString(R.string.can_not_empty));
             isValidate = false;
         }
-
         return isValidate;
     }
 
@@ -355,6 +354,7 @@ public class BirthdayActivity extends AppCompatActivity implements
         String[] projection = {
                 ReminderEntry._ID,
                 ReminderEntry.COLUMN_REMINDER_DATE,
+                ReminderEntry.COLUMN_REMINDER_TIME,
                 ReminderEntry.COLUMN_REMINDER_TITLE,
                 ReminderEntry.COLUMN_REMINDER_NOTES};
 
@@ -375,10 +375,12 @@ public class BirthdayActivity extends AppCompatActivity implements
 
         if (cursor.moveToFirst()) {
             int dateColumnIndex = cursor.getColumnIndex(ReminderEntry.COLUMN_REMINDER_DATE);
+            int timeColumnIndex = cursor.getColumnIndex(ReminderEntry.COLUMN_REMINDER_TIME);
             int titleColumnIndex = cursor.getColumnIndex(ReminderEntry.COLUMN_REMINDER_TITLE);
             int notesColumnIndex = cursor.getColumnIndex(ReminderEntry.COLUMN_REMINDER_NOTES);
 
             String date = cursor.getString(dateColumnIndex);
+            String time = cursor.getString(timeColumnIndex);
             String title = cursor.getString(titleColumnIndex);
             String notes = cursor.getString(notesColumnIndex);
 

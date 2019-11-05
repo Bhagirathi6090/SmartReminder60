@@ -65,7 +65,7 @@ public class CalendarFragment extends Fragment implements LoaderManager.LoaderCa
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         Date = simpleDateFormat.format(date);
-        Date = Date.substring(1,10);
+        Date = Date.substring(1, 10);
 
         // Add Listener in calendar
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -124,8 +124,15 @@ public class CalendarFragment extends Fragment implements LoaderManager.LoaderCa
         String titleString = "calendar";
         String createdAt = dateCreated;
 
+        SimpleDateFormat hourFormat = new SimpleDateFormat(
+                "hh:mm a");
+
+        Date date = new Date();
+        String timeCreated = hourFormat.format(date);
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(ReminderContract.ReminderEntry.COLUMN_REMINDER_DATE, createdAt);
+        contentValues.put(ReminderContract.ReminderEntry.COLUMN_REMINDER_TIME, timeCreated);
         contentValues.put(ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE, titleString);
         contentValues.put(ReminderContract.ReminderEntry.COLUMN_REMINDER_NOTES, inputNote);
 
@@ -163,6 +170,7 @@ public class CalendarFragment extends Fragment implements LoaderManager.LoaderCa
         String[] projection = {
                 ReminderContract.ReminderEntry._ID,
                 ReminderContract.ReminderEntry.COLUMN_REMINDER_DATE,
+                ReminderContract.ReminderEntry.COLUMN_REMINDER_TIME,
                 ReminderContract.ReminderEntry.COLUMN_REMINDER_TITLE,
                 ReminderContract.ReminderEntry.COLUMN_REMINDER_NOTES};
 
@@ -173,7 +181,6 @@ public class CalendarFragment extends Fragment implements LoaderManager.LoaderCa
                 selectionArgs,
                 null);
     }
-
 
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
