@@ -1,6 +1,6 @@
 # ~Reminder~SmartReminder
 #### Smart Reminder is a very simple to-do list app. You can set reminders and then the app reminds you when it’s time. it’s one of the best simple reminder apps for personal use.It also comes with an easy-to-use interface.
-#### Smart reminder is a simple and effective app that lets you add reminders to your android phone so that you never forget anything again. It integrates directly with your Menu and stays completely out of your way when you don’t need it. 
+#### It is a simple and effective app that lets you add reminders to your android phone so that you never forget anything again. It integrates directly with your Menu and stays completely out of your way when you don’t need it. 
 #### It is easy to use and fast.
 
 ### With Smart Reminder, you will never miss any major event again.
